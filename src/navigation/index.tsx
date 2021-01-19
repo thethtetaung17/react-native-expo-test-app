@@ -7,14 +7,16 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from './types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
+import LoginScreen from '../screens/LoginScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
-    </NavigationContainer>
+    <LoginScreen />
+    // <NavigationContainer
+    //   linking={LinkingConfiguration}
+    //   theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>  
+    //   <RootNavigator />
+    // </NavigationContainer>
   );
 }
 
