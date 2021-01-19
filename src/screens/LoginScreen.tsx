@@ -3,16 +3,20 @@ import { StyleSheet } from 'react-native';
 import Colors from '../constants/Colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, View, Button, TextInput } from '../components/Themed';
-import { buyItem } from '../redux/actions';
+import { login } from '../redux/actions';
 
 const LoginScreen = () => {
-
+    const user = useSelector((state: any) => state.user);
+    const dispatch = useDispatch();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const handleLogin = () => {
         console.log("logging in....")
+        dispatch(login({ email, password }));
     }
+
+    console.log("User in Redux:", user);
 
     return (
         <View style={styles.container}>

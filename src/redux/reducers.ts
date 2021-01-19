@@ -1,10 +1,13 @@
-import { BUY_ITEM } from "./types"
+import { combineReducers } from "redux"
+import {
+    BUY_ITEM,
+    LOGIN_USER,
+    LOGOUT_USER,
+    initialItemsState,
+    initialUserState
+} from "./types"
 
-const initialState = {
-    numOfItems: 20
-}
-
-const reducer = (state = initialState, action: any) => {
+const itemsReducer = (state = initialItemsState, action: any) => {
     switch (action.type) {
         case BUY_ITEM: return {
             ...state,
@@ -14,4 +17,26 @@ const reducer = (state = initialState, action: any) => {
     }
 }
 
-export default reducer;
+const userReducer = (state = initialUserState, action: any) => {
+    switch (action.type) {
+        case LOGIN_USER: return {
+            ...state,
+            isLoggedIn: true,
+            email: action.payload.email,
+            password: action.payload.password
+        }
+        case LOGOUT_USER: return {
+            ...state,
+            email: '',
+            password: '',
+            isLoggedIn: false
+        }
+        default: return state;
+    }
+}
+
+const rootReducer = combineReducers({
+    items: itemsReducer,
+    user: userReducer
+})
+export default rootReducer;
